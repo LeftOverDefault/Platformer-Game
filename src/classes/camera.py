@@ -6,7 +6,7 @@ from src.utils.settings import *
 class CameraGroup(pygame.sprite.Group):
     def __init__(self, layers) -> None:
         super().__init__()
-        self.ground_group = layers["terrain"]
+        self.grass_group = layers["grass"]
         # self.liquid_group = liquid_group
         self.player_group = layers["player"]
         self.display_surface = pygame.display.get_surface()
@@ -137,7 +137,7 @@ class CameraGroup(pygame.sprite.Group):
         # Background
 
         # Active ELements
-        for sprite in self.ground_group.sprites():
+        for sprite in self.grass_group.sprites():
             offset_position = sprite.rect.topleft - self.offset + self.internal_offset
             self.internal_surface.blit(sprite.image.convert_alpha(), offset_position)
         

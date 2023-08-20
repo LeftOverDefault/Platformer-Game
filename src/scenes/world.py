@@ -13,14 +13,14 @@ class World:
 		self.display_surface = surface
 		self.running = True
 
-		terrain_layout = import_csv_layout(world_data["terrain"])
-		self.terrain_group = self.create_tile_group(terrain_layout, "terrain")
+		terrain_layout = import_csv_layout(world_data["grass"])
+		self.terrain_group = self.create_tile_group(terrain_layout, "grass")
 
 		player_layout = import_csv_layout(world_data["player"])
 		self.player_group = pygame.sprite.GroupSingle()
 		self.player_setup(player_layout)
 		self.layer_dict = {
-			"terrain": self.terrain_group,
+			"grass": self.terrain_group,
 			"player": self.player_group
 		}
 		self.camera_group = CameraGroup(self.layer_dict)
@@ -33,9 +33,9 @@ class World:
 				if value != "-1":
 					x = column_index * tile_scale
 					y = row_index * tile_scale
-					if type == "terrain":
-						terrain_tile_list = import_cut_graphics("./assets/img/grass.png")
-						surface = terrain_tile_list[int(value)]
+					if type == "grass":
+						grass_tile_list = import_cut_graphics("./assets/img/tilesheets/grass.png")
+						surface = grass_tile_list[int(value)]
 						sprite = StaticTile((x, y), tile_scale, surface)
 						sprite_group.add(sprite)
 		
@@ -54,7 +54,7 @@ class World:
 		player = self.player
 		player.rect.x += player.direction.x * player.speed
 
-		for sprite in self.camera_group.ground_group.sprites():
+		for sprite in self.camera_group.grass_group.sprites():
 			if sprite.rect.colliderect(player.rect):
 				if player.direction.x < 0:
 					player.rect.left = sprite.rect.right
@@ -74,7 +74,7 @@ class World:
 		player = self.player
 		player.apply_gravity()
 
-		for sprite in self.camera_group.ground_group.sprites():
+		for sprite in self.camera_group.grass_group.sprites():
 			if sprite.rect.colliderect(player.rect):
 				if player.direction.y > 0:
 					player.rect.bottom = sprite.rect.top

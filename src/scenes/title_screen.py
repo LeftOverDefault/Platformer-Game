@@ -24,7 +24,7 @@ class TitleScreen:
         self.quit_button = Button("Quit", self.font, "./assets/img/buttonx64.png", (self.display_surface.get_size()[0] - (64 * 6), self.display_surface.get_size()[1] - (390 - (6 * 24))))
 
         self.world = World(world_map, self.display_surface)
-    
+
     def run(self):
         while self.running == True:
             for event in pygame.event.get():

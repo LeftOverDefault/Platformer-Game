@@ -1,4 +1,4 @@
 world_map = {
-    "terrain": "./assets/csv/world_terrain.csv",
+    "grass": "./assets/csv/world_grass.csv",
     "player": "./assets/csv/world_player.csv"
 }
