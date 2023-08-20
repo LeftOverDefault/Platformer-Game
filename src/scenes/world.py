@@ -33,7 +33,6 @@ class World:
 				if value != "-1":
 					x = column_index * tile_scale
 					y = row_index * tile_scale
-				
 					if type == "terrain":
 						terrain_tile_list = import_cut_graphics("./assets/img/grass.png")
 						surface = terrain_tile_list[int(value)]

@@ -8,7 +8,8 @@ class Button:
         self.display_surface = pygame.display.get_surface()
 
         self.image = pygame.image.load(surface_path).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (tile_scale * (4 * 1.5), tile_scale * 1.5))
+        # self.image = pygame.transform.scale(self.image, (tile_scale * (4 * 1.5), tile_scale * 1.5))
+        self.image = pygame.transform.scale(self.image, (tile_scale * 6, tile_scale * 1.5))
         self.rect = self.image.get_rect(topleft = pos)
         
         self.text_surface = font.render(text, False, "#e6ecdf")
