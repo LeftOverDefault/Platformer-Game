@@ -4,11 +4,11 @@ from src.utils.settings import *
 
 
 class CameraGroup(pygame.sprite.Group):
-    def __init__(self, terrain, player) -> None:
+    def __init__(self, layers) -> None:
         super().__init__()
-        self.ground_group = terrain
+        self.ground_group = layers["terrain"]
         # self.liquid_group = liquid_group
-        self.player_group = player
+        self.player_group = layers["player"]
         self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
 

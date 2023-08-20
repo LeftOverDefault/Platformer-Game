@@ -17,10 +17,13 @@ class World:
 		self.terrain_group = self.create_tile_group(terrain_layout, "terrain")
 
 		player_layout = import_csv_layout(world_data["player"])
-		# self.player_group = self.create_tile_group(player_layout, "player")
 		self.player_group = pygame.sprite.GroupSingle()
 		self.player_setup(player_layout)
-		self.camera_group = CameraGroup(self.terrain_group, self.player_group)
+		self.layer_dict = {
+			"terrain": self.terrain_group,
+			"player": self.player_group
+		}
+		self.camera_group = CameraGroup(self.layer_dict)
 	
 	def create_tile_group(self, layout, type):
 		sprite_group = pygame.sprite.Group()
@@ -92,9 +95,7 @@ class World:
 		self.horizontal_movement_collision()
 		self.vertical_movement_collision()
 		self.terrain_group.update()
-		# self.terrain_group.draw(self.display_surface)
 		self.player_group.update()
-		# self.player_group.draw(self.display_surface)
 
 	def run(self):
 		while self.running == True:
